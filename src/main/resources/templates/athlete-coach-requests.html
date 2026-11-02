@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yêu cầu liên kết của tôi</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 24px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            color: #1d4ed8;
+        }
+
+        .subtitle {
+            margin: 0;
+            color: #64748b;
+        }
+
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #0f172a0d;
+        }
+
+        .request {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .request:last-child {
+            border-bottom: none;
+        }
+
+        .request h3 {
+            margin: 0 0 8px;
+        }
+
+        .request p {
+            margin: 5px 0;
+            color: #64748b;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .accepted {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #475569;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .empty {
+            padding: 24px 0;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 16px auto;
+                padding: 16px;
+            }
+
+            .request {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Yêu cầu liên kết của tôi</h1>
+                <p class="subtitle">Theo dõi trạng thái các yêu cầu gửi đến huấn luyện viên.</p>
+            </div>
+
+            <a class="button" th:href="@{/athlete/coaches}">
+                Tìm huấn luyện viên
+            </a>
+        </div>
+
+        <div class="card">
+            <div th:if="${#lists.isEmpty(requests)}" class="empty">
+                Bạn chưa gửi yêu cầu liên kết nào.
+            </div>
+
+            <div th:each="request : ${requests}" class="request">
+                <div>
+                    <h3 th:text="${request.coach.fullName}">Tên huấn luyện viên</h3>
+                    <p>
+                        Email:
+                        <span th:text="${request.coach.email}">coach@example.com</span>
+                    </p>
+                    <p>
+                        Ngày gửi:
+                        <span th:text="${#temporals.format(request.requestedAt, 'dd/MM/yyyy HH:mm')}">
+                            01/01/2026 10:00
+                        </span>
+                    </p>
+                    <p th:if="${request.respondedAt != null}">
+                        Ngày phản hồi:
+                        <span th:text="${#temporals.format(request.respondedAt, 'dd/MM/yyyy HH:mm')}">
+                            01/01/2026 11:00
+                        </span>
+                    </p>
+                </div>
+
+                <span class="status" th:classappend="${request.status == 'PENDING'} ? ' pending' :
+                                  (${request.status == 'ACCEPTED'} ? ' accepted' : ' rejected')" th:text="${request.status == 'PENDING'} ? 'Đang chờ' :
+                           (${request.status == 'ACCEPTED'} ? 'Đã chấp nhận' : 'Đã từ chối')">
+                    Đang chờ
+                </span>
+            </div>
+        </div>
+
+        <p style="margin-top: 20px;">
+            <a th:href="@{/athlete/dashboard}">← Quay lại trang VĐV</a>
+        </p>
+    </div>
+</body>
+
+</html>
