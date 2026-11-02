@@ -44,9 +44,15 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/register", "/login").permitAll()
+                        .requestMatchers("/coach/**").hasRole("COACH")
+                        .requestMatchers("/athlete/**").hasRole("ATHLETE")
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
+                        .defaultSuccessUrl("/", true)
+                        .permitAll())
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/login?logout")
                         .permitAll());
 
         return http.build();
