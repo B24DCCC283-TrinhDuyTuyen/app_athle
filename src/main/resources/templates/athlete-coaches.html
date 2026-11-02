@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách huấn luyện viên</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 24px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            color: #1d4ed8;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin: 0;
+        }
+
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #0f172a0d;
+        }
+
+        .coach {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .coach:last-child {
+            border-bottom: none;
+        }
+
+        .coach h3 {
+            margin: 0 0 8px;
+        }
+
+        .coach p {
+            margin: 5px 0;
+            color: #64748b;
+        }
+
+        .button {
+            display: inline-block;
+            border: none;
+            border-radius: 7px;
+            padding: 10px 15px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        .secondary {
+            background: #475569;
+        }
+
+        .secondary:hover {
+            background: #334155;
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .empty {
+            padding: 24px 0;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 16px auto;
+                padding: 16px;
+            }
+
+            .coach {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Huấn luyện viên</h1>
+                <p class="subtitle">Tìm và gửi yêu cầu liên kết với huấn luyện viên.</p>
+            </div>
+
+            <a class="button secondary" th:href="@{/athlete/coach-requests}">
+                Yêu cầu của tôi
+            </a>
+        </div>
+
+        <div th:if="${success}" class="message success" th:text="${success}"></div>
+        <div th:if="${error}" class="message error" th:text="${error}"></div>
+
+        <div class="card">
+            <div th:if="${#lists.isEmpty(coaches)}" class="empty">
+                Hiện chưa có huấn luyện viên nào đang hoạt động.
+            </div>
+
+            <div th:each="coach : ${coaches}" class="coach">
+                <div>
+                    <h3 th:text="${coach.fullName}">Họ và tên huấn luyện viên</h3>
+                    <!-- <p>
+                        Tên đăng nhập:
+                        <strong th:text="${coach.username}">username</strong>
+                    </p> -->
+                    <p>
+                        Email:
+                        <span th:text="${coach.email}">email@example.com</span>
+                    </p>
+                </div>
+
+                <form th:action="@{/athlete/coaches/{id}/request(id=${coach.id})}" method="post">
+                    <button class="button" type="submit">Gửi yêu cầu liên kết</button>
+                </form>
+            </div>
+        </div>
+
+        <p style="margin-top: 20px;">
+            <a th:href="@{/athlete/dashboard}">← Quay lại trang VĐV</a>
+        </p>
+    </div>
+</body>
+
+</html>
