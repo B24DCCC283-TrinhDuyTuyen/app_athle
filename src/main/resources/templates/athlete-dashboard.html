@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ vận động viên | Athletics</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 6%;
+            background: #0f3d75;
+            color: white;
+        }
+
+        .brand {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logout {
+            padding: 10px 16px;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 36px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            padding: 32px;
+            border-radius: 18px;
+            color: white;
+            background: linear-gradient(120deg, #047857, #2563eb);
+        }
+
+        .welcome h1 {
+            margin-top: 0;
+            font-size: 30px;
+        }
+
+        .welcome p {
+            line-height: 1.7;
+            color: #dbeafe;
+        }
+
+        .section-title {
+            margin: 32px 0 18px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            padding: 24px;
+            border-radius: 14px;
+            background: white;
+            box-shadow: 0 4px 16px #0f172a0d;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #047857;
+        }
+
+        .card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        footer {
+            margin-top: 48px;
+            padding: 24px;
+            text-align: center;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 18px 5%;
+            }
+
+            .brand {
+                font-size: 17px;
+            }
+
+            .welcome {
+                padding: 24px;
+            }
+
+            .welcome h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="brand">ATHLETICS MANAGEMENT</div>
+
+        <form th:action="@{/logout}" method="post">
+            <button class="logout" type="submit">Đăng xuất</button>
+        </form>
+    </header>
+
+    <main>
+        <section class="welcome">
+            <h1>Xin chào, Vận động viên!</h1>
+            <p>
+                Chào mừng bạn đến với không gian tập luyện cá nhân.
+                Theo dõi kế hoạch, thành tích và mục tiêu để từng bước
+                nâng cao phong độ thi đấu.
+            </p>
+        </section>
+
+        <h2 class="section-title">Không gian vận động viên</h2>
+
+        <section class="cards">
+            <article class="card">
+                <h3>Thành tích cá nhân</h3>
+                <p>Theo dõi kết quả và thành tích tốt nhất ở các nội dung điền kinh.</p>
+            </article>
+
+            <article class="card">
+                <h3>Kế hoạch tập luyện</h3>
+                <p>Xem kế hoạch và nội dung tập luyện do huấn luyện viên xây dựng.</p>
+            </article>
+
+            <article class="card">
+                <h3>Mục tiêu thi đấu</h3>
+                <p>Đặt mục tiêu cho các cự ly 100m, 200m, 400m và những nội dung khác.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        Athletics Management System · Hệ thống quản lý điền kinh
+    </footer>
+</body>
+
+</html>
