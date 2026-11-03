@@ -128,13 +128,6 @@
     </header>
 
     <main>
-
-        <div class="dashboard-card">
-            <h3>Quản lý liên kết VĐV</h3>
-            <p>Xem yêu cầu, chấp nhận hoặc từ chối liên kết với vận động viên.</p>
-            <a th:href="@{/coach/requests}">Quản lý yêu cầu liên kết</a>
-        </div>
-
         <section class="welcome">
             <h1>Xin chào, Huấn luyện viên!</h1>
             <p>
@@ -143,6 +136,12 @@
                 tại một nơi duy nhất.
             </p>
         </section>
+        <div class="dashboard-card">
+            <h3>Quản lý liên kết VĐV</h3>
+            <p>Xem yêu cầu, chấp nhận hoặc từ chối liên kết với vận động viên.</p>
+            <a th:href="@{/coach/requests}">Quản lý yêu cầu liên kết</a>
+            <a th:href="@{/coach/athletes}">Danh sách VĐV đã liên kết</a>
+        </div>
 
         <h2 class="section-title">Không gian huấn luyện</h2>
 
