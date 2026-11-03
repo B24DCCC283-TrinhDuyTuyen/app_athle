@@ -129,14 +129,6 @@
     </header>
 
     <main>
-
-        <div class="dashboard-card">
-            <h3>Liên kết với huấn luyện viên</h3>
-            <p>Tìm huấn luyện viên, gửi yêu cầu liên kết và theo dõi phản hồi.</p>
-            <a th:href="@{/athlete/coaches}">Tìm huấn luyện viên</a>
-            <a th:href="@{/athlete/coach-requests}">Theo dõi yêu cầu</a>
-        </div>
-
         <section class="welcome">
             <h1>Xin chào, Vận động viên!</h1>
             <p>
@@ -145,6 +137,13 @@
                 nâng cao phong độ thi đấu.
             </p>
         </section>
+        <div class="dashboard-card">
+            <h3>Liên kết với huấn luyện viên</h3>
+            <p>Tìm huấn luyện viên, gửi yêu cầu liên kết và theo dõi phản hồi.</p>
+            <a th:href="@{/athlete/coaches}">Tìm huấn luyện viên</a>
+            <a th:href="@{/athlete/coach-requests}">Theo dõi yêu cầu</a>
+            <a th:href="@{/athlete/linked-coaches}">Danh sách HLV đã liên kết</a>
+        </div>
 
         <h2 class="section-title">Không gian vận động viên</h2>
 
