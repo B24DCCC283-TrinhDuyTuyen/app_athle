@@ -52,6 +52,27 @@ public class CoachAthleteService {
                 .findByCoachOrderByRequestedAtDesc(coach);
     }
 
+    @Transactional(readOnly = true)
+    public List<CoachAthlete> getLinkedAthletesForCoach(String username) {
+        User coach = getUserByUsername(username);
+        requireRole(coach, Role.COACH);
+
+        return coachAthleteRepository
+                .findByCoachAndStatusOrderByRequestedAtDesc(coach, "ACCEPTED");
+    }
+
+    @Transactional(readOnly = true)
+    public List<CoachAthlete> getLinkedCoachesForAthlete(String username) {
+        User athlete = getUserByUsername(username);
+        requireRole(athlete, Role.ATHLETE);
+
+        return coachAthleteRepository
+                .findByAthleteOrderByRequestedAtDesc(athlete)
+                .stream()
+                .filter(link -> "ACCEPTED".equals(link.getStatus()))
+                .toList();
+    }
+
     @Transactional
     public void sendRequest(String athleteUsername, Long coachId) {
         User athlete = getUserByUsername(athleteUsername);
