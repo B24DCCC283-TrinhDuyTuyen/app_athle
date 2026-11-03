@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách VĐV đã liên kết</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px 16px;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            color: #1d4ed8;
+            font-size: 28px;
+        }
+
+        .description {
+            margin: 0;
+            color: #64748b;
+        }
+
+        .back-link {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 8px;
+            background: #e2e8f0;
+            color: #334155;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            background: #cbd5e1;
+        }
+
+        .card {
+            overflow-x: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 14px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f8fafc;
+            color: #475569;
+            white-space: nowrap;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #dcfce7;
+            color: #166534;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .empty {
+            padding: 36px 16px;
+            text-align: center;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 23px;
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+            th,
+            td {
+                padding: 10px 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Danh sách VĐV đã liên kết</h1>
+                <p class="description">
+                    Những vận động viên đã chấp nhận liên kết với bạn.
+                </p>
+            </div>
+
+            <a class="back-link" th:href="@{/coach/dashboard}">
+                Quay lại trang chủ
+            </a>
+        </div>
+
+        <div class="card">
+            <div th:if="${#lists.isEmpty(links)}" class="empty">
+                <h3>Chưa có VĐV nào được liên kết</h3>
+                <p>Danh sách sẽ hiển thị khi bạn chấp nhận yêu cầu liên kết.</p>
+            </div>
+
+            <table th:unless="${#lists.isEmpty(links)}">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Họ và tên</th>
+                        <th>Tên đăng nhập</th>
+                        <th>Email</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="link, stat : ${links}">
+                        <td th:text="${stat.count}">1</td>
+                        <td th:text="${link.athlete.fullName}">Nguyễn Văn A</td>
+                        <td th:text="${link.athlete.username}">athlete01</td>
+                        <td th:text="${link.athlete.email}">athlete@example.com</td>
+                        <td>
+                            <span class="status">Đã liên kết</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
