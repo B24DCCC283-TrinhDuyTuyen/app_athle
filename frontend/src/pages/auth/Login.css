@@ -1,0 +1,249 @@
+.login-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    padding: 50px 7%;
+    box-sizing: border-box;
+    color: #ffffff;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 92, 45, 0.18), transparent 30%),
+        linear-gradient(120deg, #101820 0%, #17232d 55%, #101820 100%);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-content {
+    width: 100%;
+    max-width: 1250px;
+    min-height: 650px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+}
+
+/* Hình vận động viên bên phải */
+.login-content::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: -3%;
+    top: 5%;
+    width: 53%;
+    height: 90%;
+    background:
+        linear-gradient(90deg, #101820 0%, rgba(16, 24, 32, 0.05) 45%),
+        linear-gradient(0deg, rgba(16, 24, 32, 0.2), transparent 45%),
+        url("../../assets/athlete.jpg") center center / cover no-repeat;
+    border-radius: 28px;
+    opacity: 0.9;
+    mask-image: linear-gradient(to right, transparent 0%, black 20%);
+}
+
+/* Phần giới thiệu */
+.login-intro {
+    width: 52%;
+    max-width: 620px;
+    margin-bottom: 35px;
+}
+
+.login-label {
+    display: inline-block;
+    color: #ff7043;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 22px;
+}
+
+.login-intro h1 {
+    margin: 0;
+    font-size: clamp(48px, 6vw, 82px);
+    line-height: 0.98;
+    font-weight: 900;
+    letter-spacing: -3px;
+}
+
+.login-intro h1 span {
+    color: #ff7043;
+}
+
+.login-intro>p {
+    max-width: 470px;
+    color: #c2cbd2;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 25px 0;
+}
+
+.login-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.login-tags span {
+    padding: 9px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    color: #dce3e8;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+/* Form đăng nhập */
+.login-form-wrapper {
+    width: 100%;
+    max-width: 430px;
+    padding: 28px 30px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    background: rgba(18, 29, 38, 0.92);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+}
+
+.login-form-wrapper h2 {
+    margin: 0 0 8px;
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.login-form-wrapper>p {
+    color: #aebbc5;
+    font-size: 14px;
+    margin: 0 0 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #e3e9ed;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    box-sizing: border-box;
+    border: 1px solid #3b4a56;
+    border-radius: 8px;
+    outline: none;
+    background: #202e39;
+    color: #ffffff;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input::placeholder {
+    color: #82909a;
+}
+
+.form-group input:focus {
+    border-color: #ff7043;
+    box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.13);
+}
+
+.login-button {
+    width: 100%;
+    height: 49px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(110deg, #ff7043, #f04428);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(240, 68, 40, 0.3);
+}
+
+.register-link {
+    margin: 22px 0 0 !important;
+    text-align: center;
+    font-size: 13px !important;
+}
+
+.register-link a {
+    color: #ff8059;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .login-page {
+        padding: 45px 6%;
+    }
+
+    .login-content::after {
+        right: -8%;
+        width: 65%;
+        opacity: 0.35;
+    }
+
+    .login-intro {
+        width: 75%;
+    }
+}
+
+/* Điện thoại */
+@media (max-width: 600px) {
+    .login-page {
+        padding: 35px 20px;
+    }
+
+    .login-content {
+        min-height: auto;
+    }
+
+    .login-content::after {
+        right: -20px;
+        top: 0;
+        width: 100%;
+        height: 45%;
+        opacity: 0.2;
+        mask-image: linear-gradient(to bottom, black, transparent);
+    }
+
+    .login-intro {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .login-intro h1 {
+        font-size: 52px;
+    }
+
+    .login-intro>p {
+        font-size: 14px;
+    }
+
+    .login-form-wrapper {
+        max-width: 100%;
+        padding: 25px 20px;
+    }
+}
